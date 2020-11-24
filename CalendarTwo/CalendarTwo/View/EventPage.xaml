@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CalendarTwo.View.EventPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Какого числа началась менструация?" />
+            <DatePicker Format="MM/dd/yyyy" Date="{Binding Date}" />
+            <Label Text="Сколько дней она длиться?" />
+            <Entry Text="{Binding Count}" />
+            <Label Text="Какова длина цикла?" />
+            <Entry Text="{Binding Period}" />
+            <Button Text="Сохранить" Clicked="SaveEvent" />
+            <Button Text="Удалить" Clicked="DeleteEvent" />
+            <Button Text="Отмена" Clicked="Cancel" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
