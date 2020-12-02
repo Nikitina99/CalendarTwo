@@ -3,41 +3,46 @@ using SQLite;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace CalendarTwo.Repos
 {
     public class EventRepository
     {
-        SQLiteConnection database;
+        SQLiteAsyncConnection database; 
         public EventRepository(string databasePath)
         {
-            database = new SQLiteConnection(databasePath);
-            database.CreateTable<Event>();
+            database = new SQLiteAsyncConnection(databasePath);
         }
- 
 
-        public IEnumerable<Event> GetItems()
+        public async Task CreateTable()
         {
-            return database.Table<Event>().ToList();
+            await database.CreateTableAsync<Event>();
         }
-        public Event GetItem(int id)
+
+        public async Task<List<Event>> GetItemsAsync()
         {
-            return database.Get<Event>(id);
+            return await database.Table<Event>().ToListAsync();
+
         }
-        public int DeleteItem(int id)
+        public async Task<Event> GetItemAsync(int id)
         {
-            return database.Delete<Event>(id);
+            return await database.GetAsync<Event>(id);
         }
-        public int SaveItem(Event item)
+        public async Task<int> DeleteItemAsync(Event item)
+        {
+            return await database.DeleteAsync(item);
+        }
+        public async Task<int> SaveItemAsync(Event item)
         {
             if (item.Id != 0)
             {
-                database.Update(item);
+                await database.UpdateAsync(item);
                 return item.Id;
             }
             else
             {
-                return database.Insert(item);
+                return await database.InsertAsync(item);
             }
         }
     }

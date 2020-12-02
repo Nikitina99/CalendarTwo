@@ -11,7 +11,7 @@ namespace CalendarTwo.Model
 
         public DateTime Date { get; set; }
 
-        public int Count { get; set; }
-        public int Period { get; set; }
+        public int? Count { get; set; }
+        public int? Period { get; set; }
     }
 }

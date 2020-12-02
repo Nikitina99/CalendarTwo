@@ -45,33 +45,45 @@ namespace CalendarTwo.View
             Initialize();
         }
 
-        private void Initialize()
+        private async void Initialize()
         {
             var db = App.Database;
 
-            var table = db.GetItems();
+            var table = await db.GetItemsAsync();
             var dat = new List<DateTime>();
             foreach (var s in table)
             {
                 dat.Add(s.Date);
             }
-                
-            var dates = new List<SpecialDate>();
 
-            foreach(var d in dat)
+            var count = new List<int?>();
+            foreach (var s in table)
             {
-                Attendances = new ObservableCollection<SpecialDate>(dates) 
+                if(s.Count>0 && s.Count != null)
                 {
-                    new SpecialDate(d)
-                    {
-                         BackgroundColor = Color.Pink,
-                         BorderColor = Color.Fuchsia,
-                         BorderWidth = 8,
-                         Selectable = true 
-                    } 
-                };
+                    count.Add(s.Count);
+                }                
             }
-           
+
+            var dates = new List<SpecialDate>();
+            var num = count[count.Count - 1];
+            var lastday = dat[dat.Count-1];
+
+            for (int i=0 ; i<num; i++)
+            {
+                var d = lastday.AddDays(i);
+
+                dates.Add(new SpecialDate(d)
+                {
+                    BackgroundColor = Color.Pink,
+                    BorderColor = Color.Fuchsia,
+                    BorderWidth = 8,
+                    Selectable = true
+                });
+                               
+            }
+
+            Attendances = new ObservableCollection<SpecialDate>(dates);
         }
     }
 }

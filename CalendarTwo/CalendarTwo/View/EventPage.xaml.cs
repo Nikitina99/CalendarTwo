@@ -18,7 +18,10 @@ namespace CalendarTwo.View
             InitializeComponent();
         }
 
-        private void SaveEvent(object sender, EventArgs e)
+        public Guid DebugId { get; set; }
+        public Page1 CalendarPage { get; set; }
+
+        private async void SaveEvent(object sender, EventArgs e)
         {
             var events = (Event)BindingContext;
 
@@ -26,15 +29,16 @@ namespace CalendarTwo.View
 
             if (!String.IsNullOrEmpty(dateValue))
             {
-                App.Database.SaveItem(events);
+                App.Database.SaveItemAsync(events);
             }
-            this.Navigation.PopAsync();
+            await this.Navigation.PopAsync();
+
         }
-        private void DeleteEvent(object sender, EventArgs e)
+        private async void DeleteEvent(object sender, EventArgs e)
         {
             var events = (Event)BindingContext;
-            App.Database.DeleteItem(events.Id);
-            this.Navigation.PopAsync();
+            App.Database.DeleteItemAsync(events);
+            await this.Navigation.PopAsync();
         }
         private void Cancel(object sender, EventArgs e)
         {
