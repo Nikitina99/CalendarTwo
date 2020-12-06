@@ -49,6 +49,7 @@ namespace CalendarTwo.View
         {
             var db = App.Database;
 
+            //Дата начала месячных
             var table = await db.GetItemsAsync();
             var dat = new List<DateTime>();
             foreach (var s in table)
@@ -56,6 +57,7 @@ namespace CalendarTwo.View
                 dat.Add(s.Date);
             }
 
+            //Длительность мсч
             var count = new List<int?>();
             foreach (var s in table)
             {
@@ -65,10 +67,22 @@ namespace CalendarTwo.View
                 }                
             }
 
+            //Переодичность (для прогноза)
+            var period = new List<int?>();
+            foreach (var s in table)
+            {
+                if (s.Period > 0 && s.Period != null)
+                {
+                    period.Add(s.Period);
+                }
+            }
+
+
             var dates = new List<SpecialDate>();
             var num = count[count.Count - 1];
             var lastday = dat[dat.Count-1];
 
+            //выводим сами мсч
             for (int i=0 ; i<num; i++)
             {
                 var d = lastday.AddDays(i);
@@ -77,13 +91,35 @@ namespace CalendarTwo.View
                 {
                     BackgroundColor = Color.Pink,
                     BorderColor = Color.Fuchsia,
-                    BorderWidth = 8,
+                    BorderWidth = 4,
                     Selectable = true
-                });
-                               
+                });                               
             }
 
-            Attendances = new ObservableCollection<SpecialDate>(dates);
+            //выводим прогноз на 3 месяца
+            int j = 0;
+            while (j < 3)
+            {
+                DateTime d=new DateTime();
+                var numPrognoz = period[period.Count - 1];
+                for (int i = 0; i < num; i++)
+                {
+                    
+                    d = lastday.AddDays((double)numPrognoz + i);
+
+                    dates.Add(new SpecialDate(d)
+                    {
+                        BackgroundColor = Color.Pink,
+                        BorderWidth = 4,
+                        Selectable = true
+                    });
+                }
+                Attendances = new ObservableCollection<SpecialDate>(dates);
+                j++;
+                lastday = d;
+            }
+            
+
         }
     }
 }

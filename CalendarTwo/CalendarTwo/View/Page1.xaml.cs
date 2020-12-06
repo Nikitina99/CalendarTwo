@@ -16,7 +16,7 @@ namespace CalendarTwo.View
         protected override async void OnAppearing()
         {
             // создание таблицы, если ее нет
-            await App.Database.CreateTable();
+           await App.Database.CreateTable();
             // привязка данных
             BindingContext = new Page1ViewModal();
             base.OnAppearing();
