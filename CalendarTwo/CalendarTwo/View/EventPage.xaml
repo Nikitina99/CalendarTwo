@@ -1,18 +1,18 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              x:Class="CalendarTwo.View.EventPage">
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Какого числа началась менструация?" />
-            <DatePicker Format="MM/dd/yyyy" Date="{Binding Date}" MinimumDate="2020-01-01"  MaximumDate="2022-01-01"/>
+            <DatePicker Format="MM/dd/yyyy" Date="{Binding Date}" MinimumDate="2020-09-01"  MaximumDate="2022-01-01" />
             <Label Text="Сколько дней она длиться?" />
             <Entry Text="{Binding Count}" />
             <Label Text="Какова длина цикла?" />
             <Entry Text="{Binding Period}" />
-            <Button Text="Сохранить" Clicked="SaveEvent" />
-            <Button Text="Удалить" Clicked="DeleteEvent" />
-            <Button Text="Отмена" Clicked="Cancel" />
+            <Button Text="Сохранить" Clicked="SaveEvent" BackgroundColor="BlueViolet" TextColor="AntiqueWhite" />
+            <Button Text="Отмена" Clicked="Cancel" BackgroundColor="BlueViolet" TextColor="AntiqueWhite"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

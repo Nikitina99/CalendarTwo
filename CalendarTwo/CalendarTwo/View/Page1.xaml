@@ -11,8 +11,8 @@
                 HorizontalOptions="Center"
                 HorizontalTextAlignment="Center"
                 VerticalOptions="End"
-                Margin="20" />
-            <Button Text="Добавить" Clicked="CreateEvent" />
+                Margin="20"/>
+            <Button Text="Добавить" Clicked="CreateEvent" BackgroundColor="BlueViolet" TextColor="AntiqueWhite" />
             <controls:Calendar Padding="10,0,10,0"   
                            SelectedBorderWidth="4"   
                            DisabledBorderColor="Black"  
