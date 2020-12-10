@@ -26,10 +26,7 @@ namespace CalendarTwo.View
         private async void CreateEvent(object sender, EventArgs e)
         {
             Event events = new Event();
-            EventPage eventPage = new EventPage()
-            {
-                DebugId = Guid.NewGuid()
-            };
+            EventPage eventPage = new EventPage();
             eventPage.BindingContext = events;
             await Navigation.PushAsync(eventPage);
         }

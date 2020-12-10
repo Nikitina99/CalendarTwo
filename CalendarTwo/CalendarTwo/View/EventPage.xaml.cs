@@ -15,31 +15,31 @@ namespace CalendarTwo.View
     {
         public EventPage()
         {
-            InitializeComponent();
+            InitializeComponent();           
         }
-
-        public Guid DebugId { get; set; }
-        public Page1 CalendarPage { get; set; }
-
+      
+        /// <summary>
+        /// Метод сохранения
+        /// </summary>
         private async void SaveEvent(object sender, EventArgs e)
         {
             var events = (Event)BindingContext;
 
             string dateValue = events.Date.ToShortDateString();
 
-            if (!String.IsNullOrEmpty(dateValue))
+            if (events.Date < DateTime.UtcNow)
             {
-                App.Database.SaveItemAsync(events);
+                if (!String.IsNullOrEmpty(dateValue))
+                {
+                    App.Database.SaveItemAsync(events);
+                }
             }
             await this.Navigation.PopAsync();
+        }
 
-        }
-        private async void DeleteEvent(object sender, EventArgs e)
-        {
-            var events = (Event)BindingContext;
-            App.Database.DeleteItemAsync(events);
-            await this.Navigation.PopAsync();
-        }
+        /// <summary>
+        /// Метод отмены
+        /// </summary>
         private void Cancel(object sender, EventArgs e)
         {
             this.Navigation.PopAsync();

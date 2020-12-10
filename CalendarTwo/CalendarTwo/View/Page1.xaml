@@ -21,8 +21,7 @@
                            TitleLabelTextColor="Purple"  
                            TitleLeftArrowTextColor="Blue"  
                            SelectedDate="{Binding Date}"  
-                           SpecialDates="{Binding Attendances}"  
-                           DateCommand="{Binding DateChosen}"/>
+                           SpecialDates="{Binding Attendances}" />
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

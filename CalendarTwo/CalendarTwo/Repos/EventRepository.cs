@@ -25,14 +25,12 @@ namespace CalendarTwo.Repos
             return await database.Table<Event>().ToListAsync();
 
         }
+
         public async Task<Event> GetItemAsync(int id)
         {
             return await database.GetAsync<Event>(id);
         }
-        public async Task<int> DeleteItemAsync(Event item)
-        {
-            return await database.DeleteAsync(item);
-        }
+
         public async Task<int> SaveItemAsync(Event item)
         {
             if (item.Id != 0)
