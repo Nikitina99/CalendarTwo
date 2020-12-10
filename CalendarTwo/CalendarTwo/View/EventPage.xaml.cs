@@ -26,15 +26,14 @@ namespace CalendarTwo.View
             var events = (Event)BindingContext;
 
             string dateValue = events.Date.ToShortDateString();
-
-            if (events.Date < DateTime.UtcNow)
+            if(events.Date <= DateTime.UtcNow)
             {
                 if (!String.IsNullOrEmpty(dateValue))
                 {
                     App.Database.SaveItemAsync(events);
                 }
-            }
-            await this.Navigation.PopAsync();
+            }               
+             await this.Navigation.PopAsync();
         }
 
         /// <summary>

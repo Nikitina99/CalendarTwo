@@ -5,7 +5,7 @@
     <ContentPage.Content>
         <StackLayout>
             <Label Text="Какого числа началась менструация?" />
-            <DatePicker Format="MM/dd/yyyy" Date="{Binding Date}" MinimumDate="2020-09-01"  MaximumDate="2022-01-01"/>
+            <DatePicker Format="dd/MM/yyyy" Date="{Binding Date}" MinimumDate="2020-09-01"  MaximumDate="2022-01-01"/>
             <Label Text="Сколько дней она длится?" />
             <Entry Text="{Binding Count}" />
             <Label Text="Какова длина цикла?" />

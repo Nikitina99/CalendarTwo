@@ -4,7 +4,6 @@ using Xamarin.Forms;
 
 namespace CalendarTwo.View
 {
-
     public partial class Page1 : ContentPage
     {
         public Page1()
